@@ -44,7 +44,7 @@ export const action = async ({ request }) => {
       
       await createBanner({ title, image, status, link });
     
-    return redirect("/app/bannerlist"); // Fixed redirect path with leading slash
+    return redirect("/app/bannerlist");
   } catch (error) {
     return json({ error: error.message }, { status: 500 });
   }
@@ -71,7 +71,7 @@ export default function BannersPage() {
     [],
   );
 
-  const [status, setStatus] = useState('Active'); // Default to 'active' instead of 'today'
+  const [status, setStatus] = useState('Active');
   const handleStatusChange = useCallback(
     (value) => setStatus(value),
     [],
@@ -90,7 +90,6 @@ export default function BannersPage() {
         </Banner>
       )}
       
-      {/* These hidden inputs will pass the actual values to the server */}
       <input type="hidden" name="title" value={title} />
       <input type="hidden" name="image" value={imageUrl} />
       <input type="hidden" name="status" value={status} />
